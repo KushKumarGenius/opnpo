@@ -1,0 +1,65 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}Submission Dashboard{% endblock %}
+
+{% block body %}
+  <div class="app-shell">
+    <aside class="sidebar">
+      <h2>Tech Access</h2>
+      <p>Request Console</p>
+      <a class="sidebar-link active" href="/dashboard/">Submissions</a>
+      <a class="sidebar-link" href="/dashboard/logout/">Sign out</a>
+    </aside>
+    <main class="content">
+      <header class="content-header">
+        <div>
+          <p class="eyebrow">Admin</p>
+          <h1>Submissions</h1>
+        </div>
+        <p class="muted">{{ requests|length }} shown</p>
+      </header>
+      <form method="get" class="toolbar">
+        <input type="search" name="search" placeholder="Search by name, email, or text" value="{{ search }}" />
+        <select name="status">
+          <option value="all" {% if status == "all" %}selected{% endif %}>All statuses</option>
+          {% for value, label in status_options %}
+            <option value="{{ value }}" {% if status == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+        <select name="ordering">
+          <option value="-created_at" {% if ordering == "-created_at" %}selected{% endif %}>Newest first</option>
+          <option value="created_at" {% if ordering == "created_at" %}selected{% endif %}>Oldest first</option>
+        </select>
+        <button type="submit">Apply</button>
+      </form>
+      <section class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Type</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in requests %}
+              <tr onclick="window.location='/dashboard/requests/{{ item.id }}/'">
+                <td>{{ item.full_name }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.get_request_type_display }}</td>
+                <td>{{ item.created_at|date:"M d, Y" }}</td>
+                <td><span class="status {{ item.status }}">{{ item.get_status_display }}</span></td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="5" class="empty">No submissions match your filters.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+{% endblock %}

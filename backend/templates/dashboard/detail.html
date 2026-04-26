@@ -1,0 +1,53 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}Submission Detail{% endblock %}
+
+{% block body %}
+  <div class="app-shell">
+    <aside class="sidebar">
+      <h2>Tech Access</h2>
+      <p>Request Console</p>
+      <a class="sidebar-link" href="/dashboard/">Back to list</a>
+      <a class="sidebar-link" href="/dashboard/logout/">Sign out</a>
+    </aside>
+    <main class="content">
+      <header class="content-header">
+        <div>
+          <p class="eyebrow">Submission #{{ item.id }}</p>
+          <h1>{{ item.full_name }}</h1>
+        </div>
+      </header>
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert success">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+      <section class="detail-grid">
+        <article class="panel">
+          <h2>Contact</h2>
+          <p><strong>Email:</strong> {{ item.email }}</p>
+          <p><strong>Phone:</strong> {{ item.phone|default:"—" }}</p>
+          <p><strong>Type:</strong> {{ item.get_request_type_display }}</p>
+          <p><strong>Submitted:</strong> {{ item.created_at|date:"M d, Y H:i" }}</p>
+          <h3>Description</h3>
+          <p class="preserve-lines">{{ item.description }}</p>
+        </article>
+        <article class="panel">
+          <h2>Manage</h2>
+          <form method="post" class="stack">
+            {% csrf_token %}
+            <label>
+              Status
+              {{ form.status }}
+            </label>
+            <label>
+              Internal notes
+              {{ form.internal_notes }}
+            </label>
+            <button type="submit">Save changes</button>
+          </form>
+        </article>
+      </section>
+    </main>
+  </div>
+{% endblock %}
