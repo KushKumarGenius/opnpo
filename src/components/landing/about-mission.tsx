@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { ScrollReveal } from "./scroll-reveal";
@@ -28,25 +29,25 @@ export function AboutMission() {
 
           <ScrollReveal delay={0.08}>
             <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface shadow-lift">
-              <div
-                className="absolute inset-0 bg-gradient-to-br from-accent-soft via-canvas to-accent-glow"
-                aria-hidden
-              />
-              <div className="absolute inset-8 rounded-[var(--radius-md)] border border-white/40 bg-white/30 shadow-soft backdrop-blur-md" />
-              <div className="absolute bottom-8 left-8 right-8 rounded-[var(--radius-md)] border border-border/60 bg-surface/90 p-6 shadow-soft backdrop-blur">
-                <p className="text-sm font-medium text-ink-subtle">This week</p>
-                <p className="mt-2 text-2xl font-semibold tracking-tight text-ink">
-                  Devices ready for classrooms
-                </p>
-                <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-accent-soft">
-                  <motion.div
-                    className="h-full rounded-full bg-accent-bright"
-                    initial={{ width: "0%" }}
-                    whileInView={{ width: "72%" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: reduceMotion ? 0 : 1.1, ease: [0.22, 1, 0.36, 1] }}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent-soft via-canvas to-accent-glow" />
+              <div className="relative flex h-full items-center justify-center p-6 sm:p-8">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.94 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative w-full max-w-[380px]"
+                >
+                  <div className="pointer-events-none absolute inset-0 rounded-[var(--radius-md)] bg-gradient-to-b from-white/30 via-transparent to-transparent" />
+                  <Image
+                    src="/images/scatp-logo.png"
+                    alt="Santa Clara Technology Access Project logo"
+                    width={940}
+                    height={618}
+                    className="h-auto w-full object-contain [mask-image:radial-gradient(ellipse_at_center,black_62%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,black_62%,transparent_100%)]"
+                    priority
                   />
-                </div>
+                </motion.div>
               </div>
             </div>
           </ScrollReveal>

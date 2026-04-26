@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
@@ -63,8 +64,8 @@ export function Navbar() {
         className="absolute inset-x-0 top-0 border-b border-transparent"
         initial={false}
         animate={{
-          backgroundColor: scrolled ? "rgba(245, 240, 232, 0.92)" : "rgba(245, 240, 232, 0)",
-          borderBottomColor: scrolled ? "var(--border)" : "rgba(26, 61, 43, 0)",
+          backgroundColor: scrolled ? "rgba(234, 244, 255, 0.92)" : "rgba(234, 244, 255, 0)",
+          borderBottomColor: scrolled ? "var(--border)" : "rgba(15, 78, 168, 0)",
           backdropFilter: scrolled ? "blur(14px)" : "blur(0px)",
         }}
         transition={transition}
@@ -72,8 +73,16 @@ export function Navbar() {
         <Container className="flex h-[var(--navbar-height)] items-center justify-between gap-6">
           <Link
             href="/"
-            className="flex items-center text-[17px] font-semibold tracking-tight text-ink"
+            className="flex items-center gap-3 text-[17px] font-semibold tracking-tight text-ink"
           >
+            <Image
+              src="/images/scatp-logo.png"
+              alt="Santa Clara Technology Access Project logo"
+              width={36}
+              height={36}
+              className="h-9 w-9 rounded-full object-cover"
+              priority
+            />
             <span className="hidden sm:inline">Santa Clara Tech Access Project</span>
           </Link>
 

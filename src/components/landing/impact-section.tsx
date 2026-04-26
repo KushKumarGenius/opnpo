@@ -57,15 +57,15 @@ export function ImpactSection() {
     <Section className="border-y border-border/60 bg-surface/40">
       <Container>
         <ScrollReveal className="max-w-2xl">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent">Impact</p>
+          <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent">Impact • Live Count</p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
             Proof lives in the numbers—and in quieter evenings for families.
           </h2>
         </ScrollReveal>
 
         <div ref={impactRef} className="mt-12 grid gap-6 sm:grid-cols-2 lg:gap-8">
-          <StatCard label="Devices distributed" value={1840} enabled={impactInView} />
-          <StatCard label="People helped" value={632} suffix="+" enabled={impactInView} />
+          <StatCard label="Devices distributed" value={17} enabled={impactInView} />
+          <StatCard label="People helped" value={2} suffix="+" enabled={impactInView} />
         </div>
       </Container>
     </Section>

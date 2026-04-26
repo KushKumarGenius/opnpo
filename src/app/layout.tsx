@@ -15,11 +15,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Tech Access",
+    default: "SCATP",
     template: "%s — Tech Access",
   },
   description:
     "Student-led nonprofit restoring and placing technology where it supports learning across the Bay Area.",
+  icons: {
+    icon: "/icon.png?v=2",
+    shortcut: "/icon.png?v=2",
+    apple: "/icon.png?v=2",
+  },
 };
 
 export default function RootLayout({
