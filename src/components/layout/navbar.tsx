@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
 
 function subscribeScrolled(callback: () => void) {
@@ -64,8 +65,8 @@ export function Navbar() {
         className="absolute inset-x-0 top-0 border-b border-transparent"
         initial={false}
         animate={{
-          backgroundColor: scrolled ? "rgba(234, 244, 255, 0.92)" : "rgba(234, 244, 255, 0)",
-          borderBottomColor: scrolled ? "var(--border)" : "rgba(15, 78, 168, 0)",
+          backgroundColor: scrolled ? "var(--navbar-scroll-bg)" : "var(--navbar-scroll-clear)",
+          borderBottomColor: scrolled ? "var(--navbar-border-scroll)" : "var(--navbar-border-clear)",
           backdropFilter: scrolled ? "blur(14px)" : "blur(0px)",
         }}
         transition={transition}
@@ -105,16 +106,16 @@ export function Navbar() {
                 </Link>
               );
             })}
-            <ButtonLink
-              href="/contact"
-              variant="primary"
-              className="ml-2 px-5 py-2.5 text-[14px]"
-            >
-              Request Access
-            </ButtonLink>
+            <div className="ml-2 flex items-center gap-2.5">
+              <ThemeToggle />
+              <ButtonLink href="/contact" variant="primary" className="px-5 py-2.5 text-[14px]">
+                Request Access
+              </ButtonLink>
+            </div>
           </nav>
 
-          <div className="flex items-center gap-3 md:hidden">
+          <div className="flex items-center gap-2.5 md:hidden">
+            <ThemeToggle />
             <ButtonLink
               href="/contact"
               variant="primary"

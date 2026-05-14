@@ -77,7 +77,7 @@ export function HomeHero() {
           ].map((item) => (
             <div
               key={item.t}
-              className="rounded-[var(--radius-md)] border border-border/80 bg-surface/50 p-5 shadow-[0_1px_0_rgba(255,255,255,0.65)_inset] backdrop-blur-sm transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-lift"
+              className="rounded-[var(--radius-md)] border border-border/80 bg-surface/50 p-5 shadow-[0_1px_0_var(--surface-inset-highlight)_inset] backdrop-blur-sm transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-lift"
             >
               <p className="text-[15px] font-semibold text-ink">{item.t}</p>
               <p className="mt-2 text-sm leading-relaxed text-ink-subtle">{item.d}</p>

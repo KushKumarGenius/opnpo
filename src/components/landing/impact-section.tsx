@@ -1,6 +1,6 @@
 "use client";
 
-import { animate, useInView } from "framer-motion";
+import { animate, motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -57,7 +57,16 @@ export function ImpactSection() {
     <Section className="border-y border-border/60 bg-surface/40">
       <Container>
         <ScrollReveal className="max-w-2xl">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent">Impact • Live Count</p>
+          <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent">
+            Impact •{" "}
+            <motion.span
+              className="inline-block bg-[linear-gradient(110deg,#0b3b74_0%,#4f8fd1_45%,#0b3b74_100%)] bg-[length:200%_100%] bg-clip-text font-extrabold text-transparent"
+              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+              transition={{ duration: 3.2, ease: "linear", repeat: Infinity }}
+            >
+              Live Count
+            </motion.span>
+          </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
             Proof lives in the numbers—and in quieter evenings for families.
           </h2>

@@ -34,7 +34,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${manrope.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var k='scatp-theme';var v=localStorage.getItem(k);var d=v==='dark'||(v!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);}catch(e){}})();`,
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

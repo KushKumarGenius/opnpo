@@ -17,6 +17,7 @@ type FormState = {
   full_name: string;
   email: string;
   phone: string;
+  device_type: string;
   request_type: (typeof REQUEST_TYPES)[number]["value"];
   description: string;
 };
@@ -29,6 +30,7 @@ export function ContactCta() {
   const [form, setForm] = useState<FormState>({
     full_name: "",
     email: "",
+    device_type: "",
     phone: "",
     request_type: "access",
     description: "",
@@ -66,6 +68,7 @@ export function ContactCta() {
         full_name: "",
         email: "",
         phone: "",
+        device_type: "",
         request_type: "access",
         description: "",
       });
@@ -80,7 +83,7 @@ export function ContactCta() {
     <Section className="pb-24 sm:pb-28">
       <Container>
         <ScrollReveal>
-          <div className="overflow-hidden rounded-[var(--radius-lg)] border border-ink/10 bg-ink px-6 py-14 text-canvas shadow-lift sm:px-12 sm:py-16 lg:px-16">
+          <div className="overflow-hidden rounded-[var(--radius-lg)] border border-white/10 bg-brand-deep px-6 py-14 text-on-brand shadow-lift sm:px-12 sm:py-16 lg:px-16">
             <div className="mx-auto max-w-4xl">
               <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent-bright/90">
                 Contact
@@ -88,14 +91,16 @@ export function ContactCta() {
               <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:leading-tight">
                 Ready when you are.
               </h1>
-              <p className="mt-6 text-lg leading-relaxed text-canvas/85">
+              <p className="mt-6 text-lg leading-relaxed text-on-brand/85">
                 Whether you are a neighbor with a laptop to spare or a school looking for dependable
                 devices, we will meet you with clarity and respect for your time.
               </p>
               <form onSubmit={handleSubmit} className="mt-10 grid gap-4">
                 <div className="grid gap-4 md:grid-cols-2">
                   <label className="grid gap-2 text-sm">
-                    Full name
+                    <span>
+                      Full name <span className="text-red-300">*</span>
+                    </span>
                     <input
                       required
                       value={form.full_name}
@@ -104,7 +109,9 @@ export function ContactCta() {
                     />
                   </label>
                   <label className="grid gap-2 text-sm">
-                    Email
+                    <span>
+                      Email <span className="text-red-300">*</span>
+                    </span>
                     <input
                       required
                       type="email"
@@ -116,6 +123,20 @@ export function ContactCta() {
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
+                  <label className="grid gap-2 text-sm">
+                    <span>
+                      Device type <span className="text-red-300">*</span>
+                    </span>
+                    <input
+                      required
+                      value={form.device_type}
+                      onChange={(event) =>
+                        setForm((prev) => ({ ...prev, device_type: event.target.value }))
+                      }
+                      placeholder="Chromebook, laptop, tablet, etc."
+                      className="rounded-[var(--radius-sm)] border border-canvas/25 bg-canvas/95 px-3 py-2 text-ink outline-none transition focus:border-accent-bright"
+                    />
+                  </label>
                   <label className="grid gap-2 text-sm">
                     Phone (optional)
                     <input
@@ -146,7 +167,9 @@ export function ContactCta() {
                 </div>
 
                 <label className="grid gap-2 text-sm">
-                  Description
+                  <span>
+                    Description <span className="text-red-300">*</span>
+                  </span>
                   <textarea
                     required
                     minLength={20}
@@ -163,11 +186,11 @@ export function ContactCta() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="rounded-[var(--radius-sm)] bg-accent-bright px-6 py-2.5 text-sm font-semibold text-ink transition hover:bg-canvas disabled:opacity-70"
+                    className="rounded-[var(--radius-sm)] bg-accent-bright px-6 py-2.5 text-sm font-semibold text-brand-deep transition hover:brightness-110 disabled:opacity-70"
                   >
                     {submitting ? "Submitting..." : "Submit request"}
                   </button>
-                  <ButtonLink href="/about" variant="secondary" className="border-canvas/25 text-canvas">
+                  <ButtonLink href="/about" variant="secondary" className="border-on-brand/25 bg-white/10 text-on-brand shadow-none backdrop-blur-sm hover:bg-white/15">
                     Learn more
                   </ButtonLink>
                 </div>

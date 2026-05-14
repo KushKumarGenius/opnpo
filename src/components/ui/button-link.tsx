@@ -19,9 +19,9 @@ export function ButtonLink({
 
   const variants: Record<ButtonLinkVariant, string> = {
     primary:
-      "bg-ink text-canvas shadow-soft hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-ink",
+      "bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] shadow-soft hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-[var(--btn-primary-bg)]",
     secondary:
-      "border border-border bg-surface/80 text-ink shadow-[0_1px_0_rgba(255,255,255,0.6)_inset] backdrop-blur-sm hover:scale-[1.02] hover:bg-surface active:scale-[0.98] focus-visible:outline-accent",
+      "border border-border bg-surface/80 text-ink shadow-[0_1px_0_var(--surface-inset-highlight)_inset] backdrop-blur-sm hover:scale-[1.02] hover:bg-surface active:scale-[0.98] focus-visible:outline-accent",
   };
 
   return (
