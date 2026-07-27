@@ -1,40 +1,29 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useState } from "react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button-link";
 import { ScrollReveal } from "./scroll-reveal";
-
-const REQUEST_TYPES = [
-  { value: "access", label: "Access Request" },
-  { value: "donation", label: "Device Donation" },
-  { value: "partnership", label: "Partnership" },
-  { value: "other", label: "Other" },
-] as const;
 
 type FormState = {
   full_name: string;
   email: string;
   phone: string;
   device_type: string;
-  request_type: (typeof REQUEST_TYPES)[number]["value"];
   description: string;
 };
 
+const emptyForm: FormState = {
+  full_name: "",
+  email: "",
+  device_type: "",
+  phone: "",
+  description: "",
+};
+
 export function ContactCta() {
-  const apiBase = useMemo(
-    () => (process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000").replace(/\/+$/, ""),
-    [],
-  );
-  const [form, setForm] = useState<FormState>({
-    full_name: "",
-    email: "",
-    device_type: "",
-    phone: "",
-    request_type: "access",
-    description: "",
-  });
+  const [form, setForm] = useState<FormState>(emptyForm);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -46,7 +35,7 @@ export function ContactCta() {
     setSuccess(null);
 
     try {
-      const response = await fetch(`${apiBase}/api/requests/`, {
+      const response = await fetch("/api/donate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,24 +43,14 @@ export function ContactCta() {
         body: JSON.stringify(form),
       });
 
+      const data = (await response.json().catch(() => null)) as { error?: string } | null;
+
       if (!response.ok) {
-        const data = (await response.json().catch(() => null)) as Record<string, string[] | string> | null;
-        if (data && typeof data === "object") {
-          const firstError = Object.values(data).flat().find(Boolean);
-          throw new Error(typeof firstError === "string" ? firstError : "Unable to submit request.");
-        }
-        throw new Error("Unable to submit request.");
+        throw new Error(data?.error || "Unable to submit donation.");
       }
 
-      setSuccess("Thanks. Your request was submitted and our team will follow up shortly.");
-      setForm({
-        full_name: "",
-        email: "",
-        phone: "",
-        device_type: "",
-        request_type: "access",
-        description: "",
-      });
+      setSuccess("Thanks. Your donation details were received and our team will follow up shortly.");
+      setForm(emptyForm);
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : "Something went wrong.");
     } finally {
@@ -86,7 +65,7 @@ export function ContactCta() {
           <div className="overflow-hidden rounded-[var(--radius-lg)] border border-white/10 bg-brand-deep px-6 py-14 text-on-brand shadow-lift sm:px-12 sm:py-16 lg:px-16">
             <div className="mx-auto max-w-4xl">
               <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-accent-bright/90">
-                Contact
+                Donate
               </p>
               <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:leading-tight">
                 Ready when you are.
@@ -145,25 +124,6 @@ export function ContactCta() {
                       className="rounded-[var(--radius-sm)] border border-canvas/25 bg-canvas/95 px-3 py-2 text-ink outline-none transition focus:border-accent-bright"
                     />
                   </label>
-                  <label className="grid gap-2 text-sm">
-                    Request type
-                    <select
-                      value={form.request_type}
-                      onChange={(event) =>
-                        setForm((prev) => ({
-                          ...prev,
-                          request_type: event.target.value as FormState["request_type"],
-                        }))
-                      }
-                      className="rounded-[var(--radius-sm)] border border-canvas/25 bg-canvas/95 px-3 py-2 text-ink outline-none transition focus:border-accent-bright"
-                    >
-                      {REQUEST_TYPES.map((type) => (
-                        <option key={type.value} value={type.value}>
-                          {type.label}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
                 </div>
 
                 <label className="grid gap-2 text-sm">
@@ -188,7 +148,7 @@ export function ContactCta() {
                     disabled={submitting}
                     className="rounded-[var(--radius-sm)] bg-accent-bright px-6 py-2.5 text-sm font-semibold text-brand-deep transition hover:brightness-110 disabled:opacity-70"
                   >
-                    {submitting ? "Submitting..." : "Submit request"}
+                    {submitting ? "Submitting..." : "Donate now!"}
                   </button>
                   <ButtonLink href="/about" variant="secondary" className="border-on-brand/25 bg-white/10 text-on-brand shadow-none backdrop-blur-sm hover:bg-white/15">
                     Learn more

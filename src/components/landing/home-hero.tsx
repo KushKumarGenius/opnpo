@@ -56,7 +56,7 @@ export function HomeHero() {
             transition={{ ...heroTransition, delay: reduceMotion ? 0 : 0.28 }}
           >
             <ButtonLink href="/contact" variant="primary">
-              Request Access
+              Donate now!
             </ButtonLink>
             <ButtonLink href="/how-it-works" variant="secondary">
               See how it works

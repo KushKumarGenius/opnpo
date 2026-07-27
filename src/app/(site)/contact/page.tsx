@@ -3,7 +3,7 @@ import { ContactCta } from "@/components/landing/contact-cta";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Request access or reach out—clear communication from pickup to placement.",
+  description: "Donate a device or reach out—clear communication from pickup to placement.",
 };
 
 export default function ContactPage() {

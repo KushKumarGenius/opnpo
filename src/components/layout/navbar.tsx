@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
 
 function subscribeScrolled(callback: () => void) {
@@ -106,23 +105,19 @@ export function Navbar() {
                 </Link>
               );
             })}
-            <div className="ml-2 flex items-center gap-2.5">
-              <ThemeToggle />
-              <ButtonLink href="/contact" variant="primary" className="px-5 py-2.5 text-[14px]">
-                Request Access
-              </ButtonLink>
-            </div>
+            <ButtonLink href="/contact" variant="primary" className="ml-2 px-5 py-2.5 text-[14px]">
+              Donate now!
+            </ButtonLink>
           </nav>
 
-          <div className="flex items-center gap-2.5 md:hidden">
-            <ThemeToggle />
+          <div className="flex items-center gap-3 md:hidden">
             <ButtonLink
               href="/contact"
               variant="primary"
               className="px-4 py-2 text-[13px]"
               onClick={() => setOpen(false)}
             >
-              Request Access
+              Donate now!
             </ButtonLink>
             <button
               type="button"

@@ -62,7 +62,7 @@ export function AboutMission() {
             <h2 className="mt-4 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
               The people behind SCTAP
             </h2>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <div className="group relative overflow-hidden rounded-[var(--radius-md)] border border-border bg-surface p-5 shadow-sm transition-shadow duration-300 hover:shadow-md">
                 <div className="pointer-events-none absolute inset-0 -translate-x-[140%] bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-[140%] group-hover:opacity-100" />
                 <p className="relative z-10 text-sm font-medium uppercase tracking-[0.14em] text-ink-subtle">
@@ -73,18 +73,9 @@ export function AboutMission() {
               <div className="group relative overflow-hidden rounded-[var(--radius-md)] border border-border bg-surface p-5 shadow-sm transition-shadow duration-300 hover:shadow-md">
                 <div className="pointer-events-none absolute inset-0 -translate-x-[140%] bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-[140%] group-hover:opacity-100" />
                 <p className="relative z-10 text-sm font-medium uppercase tracking-[0.14em] text-ink-subtle">
-                  Vice President • Secretary
+                  Vice President • Head of Software & Marketing
                 </p>
-                <p className="relative z-10 mt-2 text-lg font-semibold text-ink">Pranav Mamidala</p>
-              </div>
-              <div className="group relative overflow-hidden rounded-[var(--radius-md)] border border-border bg-surface p-5 shadow-sm transition-shadow duration-300 hover:shadow-md">
-                <div className="pointer-events-none absolute inset-0 -translate-x-[140%] bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-[140%] group-hover:opacity-100" />
-                <p className="relative z-10 text-sm font-medium uppercase tracking-[0.14em] text-ink-subtle">
-                  Secretary • Head of Software & Marketing
-                </p>
-                <p className="relative z-10 mt-2 text-lg font-semibold text-ink">
-                  Kushagr Kumar 
-                </p>
+                <p className="relative z-10 mt-2 text-lg font-semibold text-ink">Kushagr Kumar</p>
               </div>
             </div>
           </div>
